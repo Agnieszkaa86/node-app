@@ -1,6 +1,6 @@
 const { User } = require("../models/user.js");
-const createUser = (name, age) => {
-     user = new User(name, age);
+const createUser = (id, name, age) => {
+     user = new User(id, name, age);
      return user;
     
  };
