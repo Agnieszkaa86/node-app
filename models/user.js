@@ -1,15 +1,29 @@
 const Joi = require("joi");
+const mongoose = require("mongoose");
+//const { tasks } = require("./task");
 
-class User {
-    constructor(id, name, age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
-}
-const userSchema = Joi.object({
-    id: Joi.number().required(),
+const Schema = mongoose.Schema;
+
+const users = new Schema(
+    {
+     name: {
+      type: String,
+      required: true,
+      // default: "Unknown User",
+    },
+    age: {
+      type: Number,
+      min: 18,
+      max: 100,
+    },
+    },
+);
+
+const User = mongoose.model("user", users);
+
+
+const userValidationSchema = Joi.object({
     name: Joi.string().required(),
-    age: Joi.number().integer.required().min(18).max(100),
+    age: Joi.number().integer().required().min(18).max(100),
 });
- module.exports = { User, userSchema};
+ module.exports = { User, userValidationSchema};

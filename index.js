@@ -1,8 +1,12 @@
- const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
+const express = require("express");
 const router = require('./routes/routes');
 
-require("./startup/database.js");
 
+const { connectDatabase } = require("./startup/database.js");
+
+connectDatabase();
 const app = express();
 
  app.use(express.json());
